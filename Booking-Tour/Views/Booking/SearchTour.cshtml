@@ -1,0 +1,82 @@
+﻿@model Booking_Tour.Models.Regions
+@{
+    ViewBag.Title = "SearchTour";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="cart-table-area my-100">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-lg-8">
+                <div class="checkout_details_area mt-50 clearfix">
+                    <div class="cart-title">
+                        <h2>Search</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @using (Html.BeginForm("SearchTour", "Booking", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+            <div class="row">
+                <div class="search-wrap col-12 " style="background-color: #808080">
+                    <div class="container">
+                        <ul class="nav nav-tabs">
+                            <li class="active"><a href="#"><i class="fas fa-mountain mr-2"></i> Tours</a></li>
+                        </ul>
+                    </div>
+                    <div class="tab-content">
+                        <div class="">
+                            <form method="post" class="colorlib-form">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            Miền :
+                                            <div class="col-md-10">
+                                                @Html.DropDownList("region_id", null, htmlAttributes: new { @class = "form-control" })
+                                                @Html.ValidationMessageFor(model => model.name, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    @*<div class="col-md-3">
+                                        <div class="form-group">
+                                            Tỉnh :
+                                            <div class="col-md-10">
+                                                @Html.DropDownList("provinces", null, htmlAttributes: new { @class = "form-control" })
+                                                @Html.ValidationMessageFor(model => model.name, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>*@
+                                    @*<div class="col-md-2">
+                                            <div class="form-group">
+                                                <label for="date">Check-in:</label>
+                                                <div class="form-field">
+                                                    <i class="icon far fa-calendar-alt"></i>
+                                                    <input type="text" id="date" class="form-control date" placeholder="Check-in date">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="form-group">
+                                                <label for="date">Check-out:</label>
+                                                <div class="form-field">
+                                                    <i class="icon far fa-calendar-alt"></i>
+                                                    <input type="text" id="date" class="form-control date" placeholder="Check-out date">
+                                                </div>
+                                            </div>
+                                        </div>*@
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <label for="date"></label>
+                                            <input type="submit" name="submit" id="submit" value="Find Tours" class="btn btn-primary btn-block">
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

@@ -1,0 +1,105 @@
+﻿@using PagedList.Mvc;
+@model PagedList.IPagedList<Booking_Tour.Models.Bills>
+
+@{
+    ViewBag.Title = "OrderMagement";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="cart-table-area my-100">
+    <div class="container">
+        @{int stt = 1;}
+        @foreach (var bills in Model)
+        {
+            <h1>Đơn hàng số @stt</h1>
+            stt++;
+            <div class="row">
+                <div class="col-5 mb-3">
+                    <img class="img-fluid" src="~/@bills.Tours.avatar" alt="Alternate Text" />
+                </div>
+                <div class="col-7">
+                    <table class="table table-hover h-100">
+                        <tr>
+                            <td class="align-middle"><b>Name User:</b></td>
+                            <td class="align-middle">@bills.Users.name</td>
+                        <tr>
+                            <td class="align-middle"><b>Email User:</b></td>
+                            <td class="align-middle">@bills.Users.email</td>
+                        </tr>
+                        <tr>
+                            <td class="align-middle"><b>Name Tour:</b></td>
+                            <td class="align-middle">@bills.Tours.name</td>
+                        </tr>
+                        <tr>
+                            <td class="align-middle"><b>Route Tour:</b></td>
+                            <td class="align-middle">@bills.Tours.day</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-5 mb-3">
+                    <table class="table table-hover h-100">
+
+                        <tr>
+                            <td class="align-middle"><b>Region Tour:</b></td>
+                            <td class="align-middle">@bills.Tours.Provinces.Regions.name</td>
+                        </tr>
+                        <tr>
+                            <td class="align-middle"><b>Provinces Tour:</b></td>
+                            <td class="align-middle">@bills.Tours.Provinces.name</td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="col-7">
+                    <table class="table table-hover h-100">
+                        <tr>
+                            <td class="align-middle"><b>Person:</b></td>
+                            <td class="align-middle">@bills.person</td>
+                        </tr>
+                        <tr>
+                            <td class="align-middle"><b>Payments:</b></td>
+                            <td class="align-middle">@bills.payments $</td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="col-12">
+                    <table class="table table-hover h-100">
+                        <tr>
+                            <td class="align-middle">
+                                <b>
+                                    Trạng thái đơn hàng:
+                                </b>
+                            </td>
+                            @if (bills.status == false)
+                            {
+                                <td class="align-middle "><input class="statusbooking_success" value="Đã đặt hàng" /></td>
+                            }
+                            @if (bills.status == true)
+                            {
+                                <td class="align-middle "><input class="statusbooking_cancel" value="Đã hủy" /></td>
+                            }
+                        </tr>
+                    </table>
+                </div>
+                @if (bills.status == false)
+                {
+                    <div class="btn btn-cancelBooking mt-5 text-center col-12 mb-20">
+                        <a href="@Url.Action("CancelBook","Bills",new { id = bills.id })" onclick="return confirm('Do you want cancel bill ?')">Cancel Booking</a>
+                    </div>
+                }
+                else
+                {
+                    <div class="cart-btn mt-5 text-center col-12 mb-20 button-success">
+                        <input type="submit" class="btn btn-canceled" form="formBill" value="Canceled">
+                    </div>
+                }
+            </div>
+        }
+    </div>
+    <div class="text-center">
+        Page @(Model.PageCount < Model.PageNumber ? 0 :Model.PageNumber)
+        @Html.PagedListPager(Model, page => Url.Action("OrderMagement", "Bills", new { page }))
+    </div>
+</div>
+

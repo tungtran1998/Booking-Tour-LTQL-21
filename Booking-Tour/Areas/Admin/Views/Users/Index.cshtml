@@ -1,0 +1,57 @@
+﻿@model IEnumerable<Booking_Tour.Models.Users>
+
+@{
+    ViewBag.Title = "List Users";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="d-flex align-items-center col-12 flex-column">
+    <h2 class="mx-5">Setting Accounts</h2>
+    <a href="@Url.Action("Create","Users")" class="btn btn-info">Create Users</a>
+</div>
+
+@foreach (var item in Model)
+{
+    <div class="row border d-flex align-items-center my-5">
+        <div class="col-4">
+            <img src="~/Content/images/User/@Html.DisplayFor(modelItem => item.avatar)" alt="Alternate Text" class="img-fluid" />
+        </div>
+        <table class="col-8 table table-hover table-bordered">
+            <tr>
+                <th>Name: </th>
+                <td colspan="2">
+                    @Html.DisplayFor(modelItem => item.name)
+                </td>
+            </tr>
+            <tr>
+                <th>Email: </th>
+                <td colspan="2" >
+                    <b >@Html.DisplayFor(modelItem => item.email)</b>
+                </td>
+            </tr>
+            <tr>
+                <th>Password </th>
+                <td colspan="2">
+                    ••••••••••
+                </td>
+            </tr>
+            <tr>
+                <th>Role: </th>
+                <td colspan="2">
+                    @if(item.role == false)
+                    {
+                        <b>User</b>
+                    }else
+                    {
+                        <b>Admin</b>
+                    }
+                </td>
+            </tr>
+            <tr>
+                @*<th>@Html.ActionLink("Edit", "Edit", new { id = item.id },new { @style = "color :red;"})</th>*@
+                <th>@Html.ActionLink("Details", "Details", new { id = item.id },new { @style = "color :red;" })</th>
+                <th>@Html.ActionLink("Delete", "Delete", new { id = item.id },new { @style = "color :red;" })</th>
+            </tr>
+        </table>
+    </div>
+}

@@ -1,0 +1,71 @@
+﻿@model Booking_Tour.Models.Tours
+
+@{
+    ViewBag.Title = @Html.DisplayFor(m => m.name);
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+    <!-- Page Content -->
+    <div class="container">
+
+        <!-- Portfolio Item Heading -->
+        <h1 class="my-4">
+            Tour: 
+            <small>@Html.DisplayFor(m =>m.name)</small>
+        </h1>
+
+        <!-- Portfolio Item Row -->
+        <div class="row">
+
+            <div class="col-md-7">
+                <img class="img-fluid" src="~/@Html.DisplayFor(m => m.avatar)" alt="">
+            </div>
+
+            <div class="col-md-5">
+                <h3 class="my-3">Tour Description</h3>
+                <p>@Html.DisplayFor(m => m.description)</p>
+                <h3 class="my-3">Tour Details</h3>
+                <ul>
+                    <li>Day:  @Html.DisplayFor(m => m.day)</li>
+                    <li>Prices: @Html.DisplayFor(m => m.price)$</li>
+                    <li>Created at: @Html.DisplayFor(m => m.created_at)</li>
+                    <li>Newest updated at: @Html.DisplayFor(m => m.update_at)</li>
+                </ul>
+            </div>
+
+        </div>
+        <!-- /.row -->
+        <!-- Related Projects Row -->
+        <h3 class="my-4">Tour Route</h3>
+
+        <a class="row d-flex justify-content-center">
+            @foreach (var item in ViewBag.DescriptionTour)
+            {
+                <div class="row border d-flex align-items-center my-5">
+                    <div class="col-3">
+                        <img src="~/@item.avatar" alt="Alternate Text" class="img-fluid" />
+                    </div>
+                    <table class="col-8 table table-hover table-bordered">
+                        <tr>
+                            <th>Day Tour: </th>
+                            <td colspan="2">@item.day_tour</td>
+                        </tr>
+                        <tr>
+                            <th>Days: </th>
+                            <td colspan="2">
+                                @item.description
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><a href="@Url.Action("Edit", "DescriptionTours", new { id = item.id })">Edit</a></td>
+                            <td><a href="@Url.Action("Details)","DescriptionTours", new { id = item.id })">Details</a></td>
+                            <td>
+                                <a href="@Url.Action("Delete", "DescriptionTours", new { id = item.id })">Delete</a>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            }
+        </a>
+    <!-- /.container -->
+    </div>
+

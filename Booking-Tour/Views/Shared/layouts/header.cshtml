@@ -1,0 +1,55 @@
+﻿<nav class="colorlib-nav" role="navigation">
+    <div class="top-menu">
+        <div class="container-fluid">
+            <div class="row d-flex justify-content-between">
+                <div class="col-3 d-flex align-items-center justify-content-center">
+                    <div id="colorlib-logo">@Html.ActionLink("VietNam Travel", "Index", "Home")</div>
+                </div>
+                <div class="col-6 text-center navbar navbar-expand-sm">
+                    <ul class="navbar-nav">
+                        <li class="@ViewBag.ActiveHome">
+                            @Html.ActionLink("Home", "Index", "Home")
+                        </li>
+                        <li class="@ViewBag.ActiveTours">
+                            @Html.ActionLink("Tours", "Tours", "Home")
+                        </li>
+                        <li class="@ViewBag.ActiveAbout">
+                            @Html.ActionLink("About", "About", "Home")
+                        </li>
+                        <li class="@ViewBag.ActiveContact">
+                            @Html.ActionLink("Contact", "Contact", "Home")
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-3">
+                    <nav class="navbar navbar-expand-sm p-0">
+                        <ul class="navbar-nav">
+                            @if (Session["idUser"] != null)
+                            {
+                                <li class="nav-item dropdown">
+                                    @{
+                                        var name = @Session["Name"].ToString();
+                                        var last_name = name.Split("".ToCharArray()).Last();
+                                    }
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                                        WelCome: @last_name
+                                    </a>
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item" href="@Url.Action("Profiles","Account")">Profiles</a>
+                                        <a class="dropdown-item" href="@Url.Action("OrderMagement","Bills",new { id = @Session["idUser"] })">Order Management</a>
+                                    </div>
+                                </li>
+                                <li class="nav-item ml-5"><a href="/Account/Logout" class="nav-link">Logout</a></li>
+                            }
+                            else
+                            {
+                                <li class="nav-item" ">@Html.ActionLink("Login", "Login", "Account")</li>
+                                <li class="nav-item" ">@Html.ActionLink("Register", "Register", "Account")</li>
+                            }
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>

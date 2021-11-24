@@ -1,0 +1,66 @@
+﻿@model Booking_Tour.Models.Bills
+
+@{
+    ViewBag.Title = "ShowBill";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="cart-table-area my-100">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="checkout_details_area mt-50 clearfix">
+                    <div class="cart-title">
+                        <h2>Bill Details:</h2>
+                    </div>
+                    <div class="row">
+                        <div class="col-6 mb-3">
+                            <img class="img-fluid" src="../../../@Html.DisplayFor(model => model.Tours.avatar)" alt="Alternate Text" />
+                        </div>
+                        <div class="col-6">
+                            <table class="table table-hover h-100">
+                                <tr>
+                                    <td class="align-middle"><b>Name:</b></td>
+                                    <td class="align-middle">@Html.DisplayFor(model => model.Tours.name)</td>
+                                </tr>
+                                <tr>
+                                    <td class="align-middle"><b>Prices:</b></td>
+                                    <td class="align-middle">@Html.DisplayFor(model => model.Tours.price) $ / person</td>
+                                </tr>
+                                <tr>
+                                    <td class="align-middle"><b>Route:</b></td>
+                                    <td class="align-middle">@Html.DisplayFor(model => model.Tours.day)</td>
+                                </tr>
+                                <tr>
+                                    <td class="align-middle"><b>Places:</b></td>
+                                    <td class="align-middle">@Html.DisplayFor(model => model.Tours.Provinces.name)</td>
+                                </tr>
+                                <tr>
+                                    <td class="align-middle"><b>Person:</b></td>
+                                    <td class="align-middle">@Html.DisplayFor(model => model.person)</td>
+                                </tr>
+                                <tr>
+                                    <td class="align-middle"><b>Total Prices:</b></td>
+                                    <td class="align-middle">@Html.DisplayFor(model => model.total_price)$ </td>
+                                </tr>
+                                <tr>
+                                    <td class="align-middle"><b>Discount:</b></td>
+                                    <td class="align-middle">@Html.DisplayFor(model => model.discount)$ (<i> @Html.DisplayFor(model => model.discount_percent)%</i>)</td>
+                                </tr>
+                                <tr>
+                                    <td class="align-middle"><b>Payments:</b></td>
+                                    <td class="align-middle">@Html.DisplayFor(model => model.payments)$</td>
+                                </tr>
+                                <tr>
+                                    <td class="align-middle"><b>Created at:</b></td>
+                                    <td class="align-middle">@Html.DisplayFor(model => model.created_at) 
+                                        <b class="ml-3">by: @Html.DisplayFor(model => model.Users.name)</b>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,39 @@
+﻿@using PagedList.Mvc;
+@model PagedList.IPagedList<Booking_Tour.Models.Tours>
+<div class="col-md-9">
+    <div class="row">
+        <div class="wrap-division col-12 d-flex flex-wrap">
+            @foreach (var tour in Model)
+            {
+                <div class="col-md-6 col-sm-6 animate-box">
+                    <div class="tour">
+
+                        <a href="@Url.Action("ShowTour", "Home", new { id = tour.id })" class="tour-img" style="background-image: url(../../../@tour.avatar);">
+                            <p class="price"><span>$@tour.price</span> <small>/ @tour.day</small></p>
+                        </a>
+                        <div class="desc">
+                            <p class="star">
+                                <span>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </span>
+                                545 Reviews
+                            </p>
+                            <h2><a href="tour-place.html">@tour.name</a></h2>
+                            <span class="city">@tour.Provinces.name, @tour.Provinces.Regions.name</span>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 text-center d-flex flex-column justify-content-center">
+            Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+            @Html.PagedListPager(Model, page => Url.Action("Tours", "Home", new { page }))
+        </div>
+    </div>
+</div>

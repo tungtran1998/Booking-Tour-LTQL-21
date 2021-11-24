@@ -1,0 +1,118 @@
+﻿
+@{
+    ViewBag.Title = "Booking";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="cart-table-area my-100">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-lg-8">
+                <div class="checkout_details_area mt-50 clearfix">
+
+                    <div class="cart-title">
+                        <h2>Checkout</h2>
+                    </div>
+                    @using (Html.BeginForm("CreateBill", "Booking", FormMethod.Post, new { @id="formBill" }))
+                    {
+                        <input type="hidden" name="unit_price" value="@ViewBag.Tour.price" />
+                        <input type="hidden" name="tour_id" value="@ViewBag.Tour.id" />
+                        <div class="row">
+                            <div class="col-5 mb-3">
+                                <img class="img-fluid" src="../../../@ViewBag.Tour.avatar" alt="Alternate Text" />
+                            </div>
+                            <div class="col-7">
+                                <table class="table table-hover h-100">
+                                    <tr>
+                                        <td class="align-middle"><b>Name:</b></td>
+                                        <td class="align-middle">@ViewBag.Tour.name</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="align-middle"><b>Prices:</b></td>
+                                        <td class="align-middle">@ViewBag.Tour.price $ / person</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="align-middle"><b>Route:</b></td>
+                                        <td class="align-middle">@ViewBag.Tour.day</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="align-middle"><b>Places:</b></td>
+                                        <td class="align-middle">@ViewBag.Tour.Provinces.name</td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div class="col-md-12 mb-3">
+                                <label class="font-18"><b>Customer Name:</b></label>
+                                <input type="text" class="form-control" name="name" value="@Session["Name"]" placeholder="Customer Name" required disabled>
+                                <input type="hidden" name="user_id" value="@Session["idUser"]" />
+                            </div>
+                            <div class="col-12 mb-3">
+                                <label class="font-18"><b>Person:</b></label>
+                                <div class="d-flex">
+                                    <div class="col-8 p-0">
+                                        <input type="number" id="selection" class="form-control" name="person" value="" placeholder="Number Person" required>
+                                    </div>
+                                    <div class="input-group ml-3 col-4">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text">Discount:</div>
+                                        </div>
+                                        <input type="text" class="form-control h-100" value="" name="discount" id="discount" placeholder="Discount" readonly>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 mb-3">
+                                <label class="font-18"><b>Tour Information:</b></label>
+                                <input type="text" class="form-control" id="tour" placeholder="Tour Name" value="@ViewBag.Tour.name" disabled>
+                            </div>
+                            <div class="col-12 mb-3">
+                                <input type="text" class="form-control" id="city" placeholder="Town" value="@ViewBag.Tour.Provinces.name - @ViewBag.Tour.Provinces.Regions.name" disabled>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+            <div class="col-12 col-lg-4">
+                <div class="cart-summary">
+                    <h5 class="my-2"><b>Cart Total:</b></h5>
+                    <table class="table table-hover my-4">
+                        <tr>
+                            <td>Unit price:</td>
+                            <td>
+                                @ViewBag.Tour.price $ / person
+                                <input type="hidden" id="unitPrice" value=" @ViewBag.Tour.price" />
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td>Discount:</td>
+                            <td>
+                                <p id="discountPrice" class="p-0 m-0">0$</p>
+                                <input type="hidden" name="discount" value="" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Number person:</td>
+                            <td>
+                                <p id="numberPerson" class="p-0 m-0">0</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Total Prices:</td>
+                            <td>
+                                <p id="totalPrices" class="p-0 m-0">0$</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><b>Payments:</b></td>
+                            <td>
+                                <p id="payment" class="p-0 m-0 font-weight-bold">0$</p>
+                            </td>
+                        </tr>
+                    </table>
+                    <div class="cart-btn mt-5 text-center">
+                        <input type="submit" class="btn btn-checkout" form="formBill" value="Checkout">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

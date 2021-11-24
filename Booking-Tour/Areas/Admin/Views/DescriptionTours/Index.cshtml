@@ -1,0 +1,54 @@
+﻿@using PagedList.Mvc;
+@model PagedList.IPagedList<Booking_Tour.Models.DescriptionTour>
+
+@{
+    ViewBag.Title = "List Description Tour";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="d-flex align-items-center col-12 flex-column">
+    @*<h2 class="mx-5">===========>>> Description Tour <<============
+    </h2>*@
+    <a href="@Url.Action("Create", "DescriptionTours")" class="btn btn-info mt-100">Create Description Tour</a>
+</div>
+
+@foreach (var item in Model)
+{
+    <div class="row border d-flex align-items-center my-5">
+        <div class="col-4">
+            <img src="~/@Html.DisplayFor(modelItem => item.avatar)" alt="Alternate Text" class="img-fluid" />
+        </div>
+        <table class="col-8 table table-hover table-bordered">
+            <tr>
+                <th>Tour Name: </th>
+                <td colspan="2">
+                    @Html.DisplayFor(modelItem => item.Tours.name)
+                </td>
+            </tr>
+            <tr>
+                <th>Day Tour: </th>
+                <td colspan="2">@Html.DisplayFor(modelItem => item.day_tour)</td>
+            </tr>
+            <tr>
+                <th>Days: </th>
+                <td colspan="2">
+                    @Html.DisplayFor(modelItem => item.description)
+                </td>
+            </tr>
+            <tr>
+                <th>@Html.ActionLink("Edit", "Edit", new { id = item.id })</th>
+                <th>@Html.ActionLink("Details", "Details", new { id = item.id })</th>
+                <th>
+                    @Html.ActionLink("Delete", "Delete", new { id = item.id })
+                </th>
+            </tr>
+        </table>
+    </div>
+
+}
+
+
+<div class="col-12 text-center d-flex flex-column justify-content-center">
+    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+    @Html.PagedListPager(Model, page => Url.Action("Index", "DescriptionTours", new { page }))
+</div>

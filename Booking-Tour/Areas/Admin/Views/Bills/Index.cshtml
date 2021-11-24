@@ -1,0 +1,122 @@
+﻿@model IEnumerable<Booking_Tour.Models.Bills>
+
+@{
+    ViewBag.Title = "List Bill";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="d-flex">
+    <h2 class="mr-5">Bills List</h2>
+</div>
+
+
+@using (Html.BeginForm("Index", "Bills", FormMethod.Get))
+{
+    <div class="row">
+        <div class="form-group col-5">
+            <label for="select">Month</label>
+            <select class="form-control" id="select" name="month">
+                <option>Month</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+            </select>
+        </div>
+        <div class="form-group col-5">
+            <label for="inputYear">Year</label>
+            <input class="form-control" id="inputYear" placeholder="Input Year" name="year">
+        </div>
+        <div class="form-group col-2">
+            <label for="submit">__</label>
+            <input id="submit" type="submit" value="Submmit" class="form-control btn btn-warning">
+        </div>
+    </div>
+}
+<table class="table table-bordered table-hover">
+    <tr>
+        <td colspan="8" class="text-center">
+            <h2>Revenue Statistics Table</h2>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="4" class="text-center">
+            <h5>Month: @ViewBag.Month</h5>
+        </td>
+        <td colspan="4" class="text-center">
+            <h5>Year: @ViewBag.Year</h5>
+        </td>
+    </tr>
+    <tr>
+        <th>
+            Custumer Name
+        </th>
+        <th>
+            Payments
+        </th>
+        <th>
+            Discount
+        </th>
+        <th>
+            Discount Percent
+        </th>
+        <th>
+            Total Price
+        </th>
+        <th>
+            Number Person
+        </th>
+        <th>
+            Created Time
+        </th>
+        <th>
+            Actions
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Users.name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.payments)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.discount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.discount_percent)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.total_price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.person)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.created_at)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.id }, new { @style = "color :red;" }) |
+                @Html.ActionLink("Details", "Details", new { id = item.id }, new { @style = "color :red;" }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.id }, new { @style = "color :red;" })
+            </td>
+        </tr>
+    }
+
+</table>
+
+<div class="d-flex justify-content-between px-3">
+    <h2>Total Revenue: <span class="text-green">@ViewBag.Total $</span></h2>
+    <h2>Total Discount: <span class="text-danger">@ViewBag.Discount $</span></h2>
+</div>

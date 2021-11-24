@@ -1,0 +1,130 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>@ViewBag.Title</title>
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <link rel="stylesheet" href="~/Content/css/Admin/AdminLTE.min.css">
+    <link rel="stylesheet" href="~/Content/css/Admin/_all-skins.min.css">
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body class="hold-transition skin-blue fixed sidebar-mini">
+    <!-- Site wrapper -->
+    <div class="wrapper">
+        <header class="main-header">
+            <!-- Logo -->
+            <a href="../../index2.html" class="logo">
+                <!-- mini logo for sidebar mini 50x50 pixels -->
+                <span class="logo-mini"><b>A</b>LT</span>
+                <!-- logo for regular state and mobile devices -->
+                <span class="logo-lg"><b>Admin</b>LTE</span>
+            </a>
+            <!-- Header Navbar: style can be found in header.less -->
+            <nav class="navbar navbar-static-top">
+                <!-- Sidebar toggle button-->
+                <a href="#" class="fas fa-bars" data-toggle="push-menu" role="button">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </a>
+                @if (Session["idUser"] != null)
+                {
+                    if (Session["Role"] == "admin")
+                    {
+                        <h4>Welcome Admin</h4>
+                    }
+                    @*<a href="@Url.Action("Logout","Account")">Logout</a>*@
+                    <li class="nav-item ml-5"><a href="/Account/Logout" class="nav-link">Logout</a></li>
+                }
+            </nav>
+        </header>
+        <aside class="main-sidebar">
+            <section class="sidebar">
+                <ul class="sidebar-menu" data-widget="tree">
+                    <li class="header">MAIN NAVIGATION</li>
+                    <li class="treeview active">
+                        <a href="#">
+                            <i class="fas fa-route"></i> <span>Tours</span>
+                            <span class="pull-right-container">
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </span>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li><a href="@Url.Action("Index","Tours")"><i class="fas fa-list-ol"></i>  List</a></li>
+                            <li><a href="@Url.Action("Create", "Tours")"><i class="fas fa-plus"></i> Create</a></li>
+                            <li><a href="@Url.Action("Create", "DescriptionTours")"><i class="fas fa-plus"></i> Create Description Tour</a></li>
+                        </ul>
+                    </li>
+                    <li class="treeview">
+                        <a href="#">
+                            <i class="fas fa-file-invoice-dollar"></i> <span>Bills</span>
+                            <span class="pull-right-container">
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </span>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li><a href="@Url.Action("Index", "Bills")"><i class="fas fa-list-ol"></i>List</a></li>
+                            <li><a href="../../index2.html"><i class="fas fa-plus"></i>Create</a></li>
+                        </ul>
+                    </li>
+                    <li class="treeview">
+                        <a href="#">
+                            <i class="fas fa-align-left"></i> <span>Revenue</span>
+                            <span class="pull-right-container">
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </span>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li><a href="../../index.html"><i class="fas fa-list-ol"></i> List</a></li>
+                            <li><a href="../../index2.html"><i class="fas fa-plus"></i> Create</a></li>
+                        </ul>
+                    </li>
+                    <li class="treeview">
+                        <a href="#">
+                            <i class="fas fa-align-left"></i> <span>Users</span>
+                            <span class="pull-right-container">
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </span>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li><a href="@Url.Action("Index","Users")"><i class="fas fa-list-ol"></i> List</a></li>
+                            <li><a href="@Url.Action("Create","Users")"><i class="fas fa-plus"></i> Create</a></li>
+                        </ul>
+                    </li>
+                    <li class="header">LABELS</li>
+                    <li><a href="#"><i class="fa fa-circle-o text-red"></i> <span>Important</span></a></li>
+                    <li><a href="#"><i class="fa fa-circle-o text-yellow"></i> <span>Warning</span></a></li>
+                    <li><a href="#"><i class="fa fa-circle-o text-aqua"></i> <span>Information</span></a></li>
+                </ul>
+            </section>
+        </aside>
+
+        <div class="content-wrapper">
+            <section class="content">
+                @RenderBody()
+            </section>
+        </div>
+        <footer class="main-footer">
+            <div class="pull-right hidden-xs">
+                <b>Version</b> 2.4.13
+            </div>
+            <strong>Copyright &copy; 2014-2019 <a href="https://adminlte.io">AdminLTE</a>.</strong> All rights
+            reserved.
+        </footer>
+    </div>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+    <script src="~/Scripts/Admin/jquery.slimscroll.min.js"></script>
+    <!-- FastClick -->
+    <script src="~/Scripts/Admin/adminlte.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="~/Scripts/Admin/demo.js"></script>
+    <!-- AdminLTE for demo purposes -->
+    <script src="~/Scripts/Admin/fastclick.js"></script>
+</body>
+</html>
+

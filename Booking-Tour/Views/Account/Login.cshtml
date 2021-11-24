@@ -1,0 +1,29 @@
+﻿@model Booking_Tour.Models.Users
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="page-content">
+    @using (Html.BeginForm("Login", "Account", FormMethod.Post, new { @class = "signup", @autocomplete = "off" }))
+    {
+        @Html.AntiForgeryToken()
+        <img src="../../Content/images/login.png" alt="" class="signup-image">
+        <div class="signup-container">
+            <h1 class="signup-heading">Sign In</h1>
+            <div class="signup-form">
+                <div class="form-group w-100">
+                    <label for="email" class="form-label text-bold">Email</label>
+                    @Html.TextBoxFor(m => m.email, new { @class = "form-input ", @placeholder = "Example: johndoe@email.com" })
+                    @Html.ValidationMessageFor(m => m.email, "", new { @class = "text-danger text-bold" })
+                    <label class="text-danger">@ViewBag.Error</label>
+                </div>
+                <div class="form-group w-100">
+                    <label for="password" class="form-label text-bold">Password</label>
+                    @Html.PasswordFor(m => m.password, new { @class = "form-input", @placeholder = "Password" })
+                    @Html.ValidationMessageFor(m => m.password, "", new { @class = "text-danger text-bold" })
+                </div>
+                <button type="submit" class="btn btn--gradient">Sign In</button>
+            </div>
+        </div>
+    }
+</div>

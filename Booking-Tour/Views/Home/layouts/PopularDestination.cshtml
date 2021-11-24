@@ -1,0 +1,39 @@
+﻿@model IEnumerable<Booking_Tour.Models.Tours>
+<div class="colorlib-tour colorlib-light-grey">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-center colorlib-heading animate-box">
+                <h2>Popular Destination</h2>
+                <p class="col-6 offset-3">We love to tell our successful far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+            </div>
+        </div>
+    </div>
+    <div class="tour-wrap d-flex flex-wrap justify-content-center align-items-center">
+        @foreach (var tour in ViewBag.Tours)
+        {
+            <a href="@Url.Action("ShowTour", "Home", new { id = tour.id })" class="tour-entry animate-box m-3">
+                <div class="tour-img" style="background-image: url(../../../@tour.avatar);">
+                </div>
+                <div class="desc">
+                    <p class="star">
+                        <span>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </span>
+                        545 Reviews
+                    </p>
+                    <h2>@tour.name</h2>
+                    <span class="city">
+                        @tour.Provinces.name
+                        /
+                        @tour.Provinces.Regions.name
+                    </span>
+                    <span class="price">@tour.price</span>
+                </div>
+            </a>
+        }
+    </div>
+</div>

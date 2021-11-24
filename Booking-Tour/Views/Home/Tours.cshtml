@@ -1,0 +1,14 @@
+﻿
+@{
+    ViewBag.Title = "Tours";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@RenderPage("tours/TopSlide.cshtml")
+<div class="colorlib-wrap ">
+    <div class="container">
+        <div class="row">
+            @RenderPage("tours/ToursList.cshtml")
+            @RenderPage("tours/ToursSearch.cshtml")
+        </div>
+    </div>
+</div>

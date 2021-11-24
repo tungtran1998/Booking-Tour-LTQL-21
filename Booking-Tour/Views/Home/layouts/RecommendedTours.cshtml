@@ -1,0 +1,58 @@
+﻿<div class="colorlib-tour">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-center colorlib-heading animate-box">
+                <h2>Most Popular Travel Countries</h2>
+                <p class="col-12 col-md-6 offset-md-3">We love to tell our successful far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="f-tour">
+                    <div class="row row-pb-md">
+                        <div class="col-md-6">
+                            <div class="row">
+                                @foreach (var item in ViewBag.RecommendedTours)
+                                {
+                                    <div class="col-md-6 animate-box">
+                                        <a href="@Url.Action("ShowTour", "Home", new { id = item.id })" class="f-tour-img" style="background-image: url(../../../@item.avatar);">
+                                            <div class="desc">
+                                                <h3><b>@item.name</b></h3>
+                                                <h3>@item.Provinces.name - @item.day</h3>
+                                                <p class="price"><span>$@item.price</span> <small>/ person</small></p>
+                                            </div>
+                                        </a>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                        <div class="col-md-6 animate-box">
+                            <div class="desc">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <h3>Hà Nội, Việt Nam</h3>
+                                        <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean. A small river named Duden flows by their place and supplies it with the necessary regelialia.</p><br>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <h4>Best Tours City</h4>
+                                        <div class="row">
+                                            <div class="col-md-4 col-sm-4 col-xs-4">
+                                                <ul>
+                                                    @foreach (var province in ViewBag.Provinces)
+                                                    {
+                                                        <li><a href="#">@province.name</a></li>
+                                                    }
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <p><a href="#" class="btn btn-primary">View All Places</a></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

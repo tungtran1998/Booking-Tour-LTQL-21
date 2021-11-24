@@ -1,0 +1,54 @@
+﻿@model Booking_Tour.Models.DescriptionTour
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2 style="text-align : center;">===========>>> Details <<============</h2>
+
+<div>
+    <h4 style="text-align : center;">DescriptionTour</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt style="text-transform: capitalize">
+            @Html.DisplayNameFor(model => model.Tours.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tours.name)
+        </dd>
+
+        <dt style="text-transform: capitalize">
+            @Html.DisplayNameFor(model => model.avatar)
+        </dt>
+
+        <dd>
+            <img src="~/Content/images/@Html.DisplayFor(model => model.avatar)" alt="Avatar Tour" class="img-fluid" />
+        </dd>
+
+        <dt style="text-transform: capitalize">
+            @Html.DisplayNameFor(model => model.day_tour)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.day_tour)
+        </dd>
+
+        <dt style="text-transform: capitalize">
+            @Html.DisplayNameFor(model => model.description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.description)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    <b>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.id }, new { @style = "color :red;" }) |
+        @Html.ActionLink("Back to List", "Index","", new { @style = "color :red;" })
+    </b>
+</p>
+    

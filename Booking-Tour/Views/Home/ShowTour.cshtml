@@ -1,0 +1,63 @@
+﻿@model IEnumerable<Booking_Tour.Models.DescriptionTour>
+@{
+    ViewBag.Title = "ShowTour";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<aside id="colorlib-hero">
+    <div class="flexslider">
+        <ul class="slides">
+            <li style=" background-image: url(../../../@ViewBag.Tour.avatar);">
+                <div class="overlay"></div>
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-12 slider-text">
+                            <div class="slider-text-inner text-center">
+                                <h2>Tour Detail</h2>
+                                <h1>@ViewBag.Tour.name</h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</aside>
+<div class="colorlib-wrap">
+    <div class="container">
+        <div class="row">
+            @foreach (var item in ViewBag.DescriptionTour)
+            {
+                <div class="col-12">
+                    <div class="wrap-division">
+                        <div class="col-md-12 col-md-offset-0 heading2 animate-box">
+                            <h2></h2>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 animate-box">
+                                <div class="room-wrap">
+                                    <div class="row">
+                                        <div class="col-md-6 col-sm-6">
+                                            <div class="room-img" style="background-image: url(../../../@item.avatar);"></div>
+                                        </div>
+                                        <div class="col-md-6 col-sm-6">
+                                            <div class="desc">
+                                                <span class="day-tour">Day @item.day_tour</span>
+                                                <h2>@item.Tours.Provinces.name</h2>
+                                                <p>@item.description</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+
+            <div class="col-md-12 animate-box text-center">
+                <p><a href="@Url.Action("Booking", "Booking", new { id = ViewBag.Tour.id })" class="btn btn-primary">Book Now!</a></p>
+            </div>
+        </div>
+    </div>
+</div>
